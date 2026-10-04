@@ -68,3 +68,8 @@ vcpkg_installed/
 Testing/
 .cache/
 build/
+*.qdstrm
+*.nsys-rep
+*.sqlite
+nsys_out.txt
+s3-matmul/matmul s3-matmul/matmul_v1 s3-matmul/matmul_v2 s3-matmul/matmul_v3 s3-matmul/matmul_v4 s3-matmul/matmul_v4_lb s3-matmul/matmul_big s2-reduction/reduction s2-reduction/reduction_fp s2-reduction/reduction_v23 s2-vector-add/benchmark
