@@ -37,3 +37,11 @@
 - s2-vector-add/  首次 GPU 移植 + 端到端 benchmark（kernel 710× / e2e 2.49×）
 - s2-reduction/   归约三版本 + 浮点精度实验
 - s3-matmul/      matmul v0-v4 + cuBLAS 对照
+
+## 真实数值格式移植：1D 热传导求解器（项目本体）
+
+- 10^6 格点 × 10^3 时间步显式差分，stencil kernel + 双缓冲，数据全程驻留显存
+- **加速比：CPU 1836ms → GPU 3.83ms ≈ 479×（端到端 ≈450×）**
+- CPU/GPU 逐点对拍：混合容差（atol+rtol），最终误差 5.6e-45（denormal 量级，逐位一致）
+- 调试实录：三轮假设定位初态污染 bug（"金标准先跑"陷阱——参照物消费掉了输入场）
+- roofline 判决：AI≈0.3 FLOP/B，8MB 工作集驻留 L2（实测 ~2TB/s），判定优化收敛
