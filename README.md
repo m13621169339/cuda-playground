@@ -45,3 +45,8 @@
 - CPU/GPU 逐点对拍：混合容差（atol+rtol），最终误差 5.6e-45（denormal 量级，逐位一致）
 - 调试实录：三轮假设定位初态污染 bug（"金标准先跑"陷阱——参照物消费掉了输入场）
 - roofline 判决：AI≈0.3 FLOP/B，8MB 工作集驻留 L2（实测 ~2TB/s），判定优化收敛
+
+## PyTorch 自定义算子
+
+- torch.utils.cpp_extension JIT 桥：CUDA kernel 直接吃进 torch.Tensor
+- stencil 算子 vs 原生 PyTorch 写法：**13.1×**（融合消除 kernel 启动开销与临时张量倒手）
